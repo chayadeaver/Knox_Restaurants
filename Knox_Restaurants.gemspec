@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = KnoxRestaurants::VERSION
   spec.authors       = ["Chaya Deaver"]
   spec.email         = ["chayadeaver@gmail.com"]
-
+# for spec.summary and description you would have to fill it in later
   spec.summary       = %q{asdasadasda}
   spec.description   = %q{asdasdas}
   spec.homepage      = "http://knoxrestaurants.com"
