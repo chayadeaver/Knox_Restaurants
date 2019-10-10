@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require './lib/environment'
+# require "bundler/setup"
+
+KnoxRestaurants::CLI.new.call

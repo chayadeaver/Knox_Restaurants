@@ -7,7 +7,6 @@ class KnoxRestaurants::CLI
 
     def list_restaurants
         #get restaurants
-
-        
+        puts "Hey Juan"
     end
 end
