@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+## I had to change the name of the second module because it was confusing me when reading the errors.
+require './lib/environment'
+# require "bundler/setup"
+
+KnoxRestaurants::CLI.new.call

@@ -7,7 +7,7 @@ class KnoxRestaurants::CLI
 
     def list_restaurants
         #get restaurants
-
-        
+        binding.pry
+        puts "Hey Juan"
     end
 end
