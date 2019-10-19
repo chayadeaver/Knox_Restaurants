@@ -1,18 +1,36 @@
 
 class KnoxRestaurants::Scraper
-    attr_accessor :name
+    attr_accessor :cuisine
 
-    @@all = []
-    @@hash = {}
+   
 
     @@key = "FlT_U-hetuuWol3koMSchyQniIUHsbOKhhoQ1oow-eS16rDai1KLOPKi9azL1Rcs-uu-lVAWYGLM8oOHw7itln5wNFeZpFmRgwibomWs9lJ34-HE_UExjELukMekXXYx"
 
 
     def self.fetch_data
-    url = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=knoxville&limit=5"
-    response = HTTParty.get(url, headers: {'Authorization' => "Bearer #{@@key}"})
-    response.parsed_response
-        binding.pry
+        
+        url = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=knoxville&limit=5"
+        response = HTTParty.get(url, headers: {'Authorization' => "Bearer #{@@key}"})
+        response.parsed_response
+        response["businesses"].each do |a| #response["businesses"] later
+            
+            restaurant_name = a["name"]
+            phone_number = a["display_phone"]
+            address = a["location"]["display_address"].join(", ")
+            cuisine = a["categories"].map{|type| type["title"]}
+    
+            restaurant_hash = {
+                :name => restaurant_name,
+                :phone_number => phone_number,
+                :cuisine => cuisine,
+                :address => address
+            }
+            
+            KnoxRestaurants::Restaurant.new(restaurant_hash) 
+
+    
+            
+        end
 
     end
 
