@@ -7,13 +7,9 @@ class KnoxRestaurants::CLI
         puts "What are you in the mood for?"
         puts "Enter 'end' to exit"
 
-
-        input = gets.chomp.downcase
+        input = gets.strip.downcase
 
         print_restaurants(input.to_i)
-
-
-
 
     end
 
@@ -24,6 +20,8 @@ class KnoxRestaurants::CLI
     end
 
     def print_restaurants(input)
-      KnoxRestaurants::Restaurant.get_cuisine_restaurants(input)
+      KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |restaurant, idx|
+        puts "#{idx}. #{restaurant.name}"
+      end
     end
 end
