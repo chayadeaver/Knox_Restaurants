@@ -2,15 +2,19 @@ class KnoxRestaurants::CLI
     #outputs to user
     def call
         KnoxRestaurants::Scraper.fetch_data
+        
+        puts "Welcome to Knoxville!" 
+        input = ""
         print_cuisines
-        puts "Welcome to Knoxville!"
-        puts "What are you in the mood for?"
-        puts "Enter 'end' to exit"
 
-        input = gets.strip.downcase
-
-        print_restaurants(input.to_i)
-
+        while input != "end"
+          puts "What are you in the mood for?"
+          puts "Enter 'end' to exit"
+          input = gets.strip.downcase
+          
+          print_restaurants(input.to_i)
+ 
+        end
     end
 
     def print_cuisines
