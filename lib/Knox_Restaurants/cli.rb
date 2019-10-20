@@ -6,9 +6,6 @@ class KnoxRestaurants::CLI
         KnoxRestaurants::Scraper.fetch_data
         puts KnoxRestaurants::Restaurant.get_cuisines
         
-        # KnoxRestaurants::Restaurant.restaurant_by_cuisine
-
-        # KnoxRestaurants::Restaurant.all.each{|rest| puts rest.cuisine}.uniq
         
     end
 
