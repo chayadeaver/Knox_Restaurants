@@ -9,7 +9,7 @@ class KnoxRestaurants::Scraper
 
     def self.fetch_data
         
-        url = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=knoxville&limit=5"
+        url = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=knoxville&limit=10"
         response = HTTParty.get(url, headers: {'Authorization' => "Bearer #{@@key}"})
         response.parsed_response
         response["businesses"].each do |a| #response["businesses"] later

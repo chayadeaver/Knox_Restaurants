@@ -3,6 +3,8 @@ class KnoxRestaurants::Restaurant
     
     @@all = []
 
+    #a restaurant has a name, a list of cuisines, an address, and a phone number
+
     def initialize(restaurant_hash)
         @name = restaurant_hash[:name]
         @phone_number = restaurant_hash[:phone_number]
@@ -16,9 +18,9 @@ class KnoxRestaurants::Restaurant
         @@all
     end
 
-    def cuisines
-        self.all.collect{|restaurant| puts restaurant.cuisine}
-
+    def self.cuisines #displays all cuisinesn but only unique items
+      i = self.all.collect{|rest| rest.cuisine}.flatten.uniq
+      puts i
     end
 
     

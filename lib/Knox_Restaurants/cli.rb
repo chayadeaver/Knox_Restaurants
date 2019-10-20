@@ -4,6 +4,8 @@ class KnoxRestaurants::CLI
         puts "Welcome to Knoxville!"
         start
         KnoxRestaurants::Scraper.fetch_data
+        # KnoxRestaurants::Restaurant.all.each{|rest| puts rest.cuisine}.uniq
+        KnoxRestaurants::Restaurant.cuisines
 
     end
 
@@ -12,6 +14,13 @@ class KnoxRestaurants::CLI
      
     #  input = gets.chomp
 
+    #  case input
+    #  when 
+
+    #  end
+
+
     end
+
 
 end
