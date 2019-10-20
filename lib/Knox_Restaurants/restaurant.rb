@@ -18,9 +18,19 @@ class KnoxRestaurants::Restaurant
         @@all
     end
 
-    def self.print_cuisines #prints all cuisines but only unique items
-        puts self.all.collect{|r| r.cuisine}.flatten.uniq
-        
-      end
+    def self.get_cuisines #prints all cuisines but only unique items
+        self.all.collect{|r| r.cuisine}.flatten.uniq
+    end
+
+    def self.get_names
+        self.all.collect{|r| r.name}
+    end
     
+    def self.get_phone_numbers
+        self.all.collect{|r| r.phone_number}
+    end
+
+    def self.get_address
+        self.all.collect{|r| r.address}
+    end
 end
