@@ -13,8 +13,9 @@ class KnoxRestaurants::CLI
         input = gets.strip.downcase
           if input != "end"
             print_restaurants(input.to_i)
+          else
+            exit
           end
-          exit
         end 
     end
 
@@ -25,13 +26,15 @@ class KnoxRestaurants::CLI
     end
 
     def print_restaurants(input)
-      KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |restaurant, idx|
+      KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
         puts <<~REST
-        #{idx}. #{restaurant.name}
-        #{restaurant.address}
-        #{restaurant.phone_number}
+        #{idx}. #{r.name}
+        Address: #{r.address}
+        Phone number: #{r.phone_number}
+        Website: #{r.url}
+        Rating: #{r.rating} of 5
+        Price Range: #{r.price}
         REST
-      
       end
     end
 
