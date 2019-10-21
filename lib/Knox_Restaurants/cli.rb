@@ -3,15 +3,17 @@ class KnoxRestaurants::CLI
     def call
         KnoxRestaurants::Scraper.fetch_data #fetches from API
         puts "Welcome to Knoxville!" 
+        puts "What are you in the mood for?"
         print_cuisines
-        
+
         input = ""
         while input != "end"
-        puts "What are you in the mood for?"
         puts "Enter 'end' to exit"
         input = gets.strip.downcase
           if input != "end"
             print_restaurants(input.to_i)
+            puts "Still hungry? Pick another cuisine"
+          elsif input  
           else
             exit
           end
@@ -33,6 +35,7 @@ class KnoxRestaurants::CLI
         Website: #{r.url}
         Rating: #{r.rating} of 5
         Price Range: #{r.price}
+        Reviews: #{r.reviews}
         REST
       end
     end
