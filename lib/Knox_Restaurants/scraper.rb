@@ -21,6 +21,7 @@ class KnoxRestaurants::Scraper
             url = a["url"]
             rating = a["rating"]
             price = a["price"]
+            reviews = a["review_count"]
     
             restaurant_hash = {
                 :name => restaurant_name,
@@ -29,7 +30,8 @@ class KnoxRestaurants::Scraper
                 :address => address,
                 :url => url,
                 :rating => rating,
-                :price => price
+                :price => price,
+                :reviews => reviews
             }
             KnoxRestaurants::Restaurant.new(restaurant_hash)  
         end
