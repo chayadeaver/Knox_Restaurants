@@ -1,5 +1,5 @@
 
-class KnoxRestaurants::Scraper
+class KnoxRestaurants::API
     attr_accessor :cuisine
 
    
@@ -7,7 +7,7 @@ class KnoxRestaurants::Scraper
     @@key = "FlT_U-hetuuWol3koMSchyQniIUHsbOKhhoQ1oow-eS16rDai1KLOPKi9azL1Rcs-uu-lVAWYGLM8oOHw7itln5wNFeZpFmRgwibomWs9lJ34-HE_UExjELukMekXXYx"
 
 
-    def self.fetch_data
+    def self.fetch
         
         url = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=knoxville&limit=15"
         response = HTTParty.get(url, headers: {'Authorization' => "Bearer #{@@key}"})

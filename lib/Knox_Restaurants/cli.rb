@@ -1,7 +1,7 @@
 class KnoxRestaurants::CLI
     #outputs to user
     def call
-        KnoxRestaurants::Scraper.fetch_data #fetches from API
+        KnoxRestaurants::API.fetch #fetches from API
         puts "Welcome to Knoxville!" 
         puts "What are you in the mood for?"
         print_cuisines
@@ -12,8 +12,9 @@ class KnoxRestaurants::CLI
         input = gets.strip.downcase
           if input != "end"
             print_restaurants(input.to_i)
-            puts "Still hungry? Pick another cuisine"
-          elsif input  
+            puts "Still hungry? Pick another cuisine" 
+          elsif input != "#{1..24}"
+            puts "Please pick another cuisine"
           else
             exit
           end
