@@ -37,6 +37,16 @@ class KnoxRestaurants::Restaurant
     def self.get_cuisine_restaurants(num)
       cuisine = self.get_cuisines[num-1]
       self.all.select {|r| r.cuisine.include?(cuisine)}
-
     end
+
+    def self.get_address_restaurants(num)
+        address = self.get_address[num-1]
+        self.all.select {|r| r.address.include?(address)}
+    end
+
+    def self.get_phone_number_restaurants(num)
+        phone_number = self.get_phone_number[num-1]
+        self.all.select {|r| r.phone_number.include?(phone_number)}
+    end
+
 end
