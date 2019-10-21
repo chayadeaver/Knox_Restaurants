@@ -1,5 +1,5 @@
 class KnoxRestaurants::Restaurant
-    attr_accessor :name, :cuisine, :address, :phone_number
+    attr_accessor :name, :cuisine, :address, :phone_number, :url, :rating, :price
 
     @@all = []
 
@@ -10,8 +10,10 @@ class KnoxRestaurants::Restaurant
         @phone_number = restaurant_hash[:phone_number]
         @cuisine = restaurant_hash[:cuisine]
         @address = restaurant_hash[:address]
+        @url = restaurant_hash[:url]
+        @rating = restaurant_hash[:rating]
+        @price = restaurant_hash[:price]
         @@all << self
-
     end
 
     def self.all
@@ -22,31 +24,9 @@ class KnoxRestaurants::Restaurant
         self.all.collect{|r| r.cuisine}.flatten.uniq
     end
 
-    def self.get_names
-        self.all.collect{|r| r.name}
-    end
-
-    def self.get_phone_numbers
-        self.all.collect{|r| r.phone_number}
-    end
-
-    def self.get_address
-        self.all.collect{|r| r.address}
-    end
-
     def self.get_cuisine_restaurants(num)
       cuisine = self.get_cuisines[num-1]
-      self.all.select {|r| r.cuisine.include?(cuisine)}
+      rest = self.all.select {|r| r.cuisine.include?(cuisine)}
+      
     end
-
-    def self.get_address_restaurants(num)
-        address = self.get_address[num-1]
-        self.all.select {|r| r.address.include?(address)}
-    end
-
-    def self.get_phone_number_restaurants(num)
-        phone_number = self.get_phone_number[num-1]
-        self.all.select {|r| r.phone_number.include?(phone_number)}
-    end
-
 end

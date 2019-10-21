@@ -18,20 +18,21 @@ class KnoxRestaurants::Scraper
             phone_number = a["display_phone"]
             address = a["location"]["display_address"].join(", ")
             cuisine = a["categories"].map{|type| type["title"]}
+            url = a["url"]
+            rating = a["rating"]
+            price = a["price"]
     
             restaurant_hash = {
                 :name => restaurant_name,
                 :phone_number => phone_number,
                 :cuisine => cuisine,
-                :address => address
+                :address => address,
+                :url => url,
+                :rating => rating,
+                :price => price
             }
-            
-            KnoxRestaurants::Restaurant.new(restaurant_hash) 
-
-    
-            
+            KnoxRestaurants::Restaurant.new(restaurant_hash)  
         end
-
     end
 
     def self.all
