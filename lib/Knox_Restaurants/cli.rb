@@ -8,8 +8,8 @@ class KnoxRestaurants::CLI
     end
 
     def start 
-        print_cuisines
-        input_cuisine_number
+        display_cuisine_choices
+        input_cuisine_choice
         return_details
         last_hurrah
     end
@@ -18,18 +18,19 @@ class KnoxRestaurants::CLI
       puts "Please enter a valid restaurant number"
       restaurant = gets.chomp
         if valid?(restaurant, @restaurant)
-          print_details(restaurant.to_i)
+          display_details(restaurant.to_i)
         else
           return_details
         end
     end
 
-    def input_cuisine_number
+    def input_cuisine_choice
       puts "What are you in the mood for?"
+      puts "Enter a valid number"
       puts "Enter 'end' to exit"
       input = gets.strip.downcase
         if  valid?(input, @cuisine)
-          print_restaurants(input.to_i)
+          display_restaurants(input.to_i)
           puts "To find out more, enter the number for which restaurant you want"
         else
           puts "I don't understand. Please pick another cuisine"
@@ -46,19 +47,19 @@ class KnoxRestaurants::CLI
        input.to_i.between?(1, array.length)
     end
 
-    def print_cuisines
+    def display_cuisine_choices
       @cuisine = KnoxRestaurants::Restaurant.get_cuisines.each.with_index(1) do |cuisine, idx|
         puts "#{idx}. #{cuisine}"
       end
     end
 
-    def print_restaurants(input)
+    def display_restaurants(input)
       @restaurant = KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
         puts "#{idx}. #{r.name}"
        end
     end
 
-    def print_details(input)
+    def display_details(input)
       r = @restaurant[input-1]
       
       puts <<~RESTAURANT

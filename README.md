@@ -1,8 +1,6 @@
 # KnoxRestaurants
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Knox_Restaurants`. To experiment with that code, run `bin/knox_restaurants` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This Ruby gem parses Yelp API to gather information about restaurants in Knoxville, Tennessee. It uses user input to prompt different displays of information for restaurants based on a numbered item list of cuisines. 
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To start the program, run 'bin/knox_restaurants' in terminal. There will be a numbered list of cuisines to choose from. There will be a prompt to enter in a number. It will return a list of restaurants corresponding to the user's input. From here, enter a valid number to get more information for that restaurant. Enter "end" to exit the program.
 
 ## Development
 

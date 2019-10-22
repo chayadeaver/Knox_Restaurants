@@ -2,13 +2,6 @@
 class KnoxRestaurants::API
     attr_accessor :cuisine
 
-    # def initialize(input)
-    #     @input = input
-    # end
-
-    def fetch
-    end
-
     def self.fetch
         key = ENV["API_KEY"]
         url = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=knoxville&limit=50"
