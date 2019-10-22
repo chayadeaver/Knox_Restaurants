@@ -8,11 +8,10 @@ class KnoxRestaurants::API
 
 
     def self.fetch
-        
         url = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=knoxville&limit=15"
         response = HTTParty.get(url, headers: {'Authorization' => "Bearer #{@@key}"})
         response.parsed_response
-        response["businesses"].each do |a| #response["businesses"] later
+        response["businesses"].each do |a| 
             
             restaurant_name = a["name"]
             phone_number = a["display_phone"]

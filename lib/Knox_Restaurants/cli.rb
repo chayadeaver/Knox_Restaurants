@@ -10,35 +10,43 @@ class KnoxRestaurants::CLI
         while input != "end"
         puts "Enter 'end' to exit"
         input = gets.strip.downcase
-          if input != "end"
-            print_restaurants(input.to_i)
-            puts "Still hungry? Pick another cuisine" 
-          elsif input != "#{1..24}"
-            puts "Please pick another cuisine"
-          else
+          if input == "end"
             exit
+          elsif input.to_i.between?(1, @cuisine.length)
+            print_restaurants(input.to_i)
+            puts "To find out more, enter the number for which restaurant you want" 
+            print_details(input = gets.to_i)
+          else
+            puts "I don't understand. Please pick another cuisine"
           end
         end 
+        
     end
 
     def print_cuisines
-      KnoxRestaurants::Restaurant.get_cuisines.each.with_index(1) do |cuisine, idx|
+      @cuisine = KnoxRestaurants::Restaurant.get_cuisines.each.with_index(1) do |cuisine, idx|
         puts "#{idx}. #{cuisine}"
       end
     end
 
     def print_restaurants(input)
-      KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
-        puts <<~REST
-        #{idx}. #{r.name}
+      @restaurant = KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
+        puts "#{idx}. #{r.name}"
+
+       end
+    end
+
+    def print_details(input)
+      r = @restauarant[input - 1]
+      puts <<~R
         Address: #{r.address}
         Phone number: #{r.phone_number}
         Website: #{r.url}
         Rating: #{r.rating} of 5
         Price Range: #{r.price}
         Reviews: #{r.reviews}
-        REST
-      end
+        R
+      
     end
 
     def exit
