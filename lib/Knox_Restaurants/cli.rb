@@ -9,25 +9,32 @@ class KnoxRestaurants::CLI
 
     def start 
         print_cuisines
-        puts "What are you in the mood for?"
+        input_cuisine_number
+        return_details
+        last_hurrah
+    end
 
-        puts "Enter 'end' to exit"
-        input = gets.strip.downcase
+    def return_details
+      puts "Please enter a valid restaurant number"
+      restaurant = gets.chomp
+        if valid?(restaurant, @restaurant)
+          print_details(restaurant.to_i)
+        else
+          return_details
+        end
+    end
+
+    def input_cuisine_number
+      puts "What are you in the mood for?"
+      puts "Enter 'end' to exit"
+      input = gets.strip.downcase
         if  valid?(input, @cuisine)
-          repeat_restaurant(input)
+          print_restaurants(input.to_i)
+          puts "To find out more, enter the number for which restaurant you want"
         else
-         repeat_cuisine
-        end
-        if valid?(input = gets.to_i, @restaurant)
-          print_details(input)
-        else
-          repeat_restaurant(input)
-        end
-        puts "Would you like to pick another cuisine? Yes or No"
-        if gets.chomp.downcase == "yes"
+          puts "I don't understand. Please pick another cuisine"
+          sleep(2)
           start
-        else
-          goodbye
         end
     end
 
@@ -37,17 +44,6 @@ class KnoxRestaurants::CLI
       end
       # input_to_i.between?(1,array.length)
        input.to_i.between?(1, array.length)
-    end
-
-    def repeat_cuisine
-      puts "I don't understand. Please pick another cuisine"
-          sleep(5)
-          start
-    end
-
-    def repeat_restaurant(input)
-      print_restaurants(input.to_i)
-          puts "To find out more, enter the number for which restaurant you want"
     end
 
     def print_cuisines
@@ -74,6 +70,15 @@ class KnoxRestaurants::CLI
         Reviews: #{r.reviews}
         RESTAURANT
       
+    end
+
+    def last_hurrah
+      puts "Would you like to pick another cuisine? Yes or No"
+        if gets.chomp.downcase == "yes"
+          start
+        else
+          goodbye
+        end
     end
 
     def goodbye
