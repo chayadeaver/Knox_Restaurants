@@ -1,8 +1,14 @@
 class KnoxRestaurants::CLI
     #outputs to user
+
     def call
-        KnoxRestaurants::API.fetch #fetches from API
-        puts "Welcome to Knoxville!" 
+      KnoxRestaurants::API.fetch #fetches from API
+        puts "Welcome to Knoxville!"
+        start
+    end
+
+    def start
+         
         puts "What are you in the mood for?"
         print_cuisines
 
@@ -32,20 +38,20 @@ class KnoxRestaurants::CLI
     def print_restaurants(input)
       @restaurant = KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
         puts "#{idx}. #{r.name}"
-
        end
     end
 
     def print_details(input)
-      r = @restauarant[input - 1]
-      puts <<~R
+      r = @restaurant[input-1]
+      
+      puts <<~RESTAURANT
         Address: #{r.address}
         Phone number: #{r.phone_number}
         Website: #{r.url}
         Rating: #{r.rating} of 5
         Price Range: #{r.price}
         Reviews: #{r.reviews}
-        R
+        RESTAURANT
       
     end
 
