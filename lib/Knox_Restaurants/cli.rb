@@ -7,26 +7,30 @@ class KnoxRestaurants::CLI
         start
     end
 
-    def start
-         
-        puts "What are you in the mood for?"
+    def start 
         print_cuisines
+        puts "What are you in the mood for?"
 
         input = ""
-        while input != "end"
         puts "Enter 'end' to exit"
         input = gets.strip.downcase
           if input == "end"
-            exit
+            goodbye
           elsif input.to_i.between?(1, @cuisine.length)
             print_restaurants(input.to_i)
             puts "To find out more, enter the number for which restaurant you want" 
-            print_details(input = gets.to_i)
           else
             puts "I don't understand. Please pick another cuisine"
+            sleep(5)
+            start
           end
-        end 
-        
+        print_details(input = gets.to_i)
+        puts "Would you like to pick another cuisine? Yes or No"
+        if gets.chomp.downcase == "yes"
+          start
+        else
+          goodbye
+        end
     end
 
     def print_cuisines
@@ -55,7 +59,8 @@ class KnoxRestaurants::CLI
       
     end
 
-    def exit
+    def goodbye
       puts "Thanks for visiting Knoxville. Have a nice day."
+      exit
     end
 end
