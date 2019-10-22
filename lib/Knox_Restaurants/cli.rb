@@ -11,26 +11,43 @@ class KnoxRestaurants::CLI
         print_cuisines
         puts "What are you in the mood for?"
 
-        input = ""
         puts "Enter 'end' to exit"
         input = gets.strip.downcase
-          if input == "end"
-            goodbye
-          elsif input.to_i.between?(1, @cuisine.length)
-            print_restaurants(input.to_i)
-            puts "To find out more, enter the number for which restaurant you want" 
-          else
-            puts "I don't understand. Please pick another cuisine"
-            sleep(5)
-            start
-          end
-        print_details(input = gets.to_i)
+        if  valid?(input, @cuisine)
+          repeat_restaurant(input)
+        else
+         repeat_cuisine
+        end
+        if valid?(input = gets.to_i, @restaurant)
+          print_details(input)
+        else
+          repeat_restaurant(input)
+        end
         puts "Would you like to pick another cuisine? Yes or No"
         if gets.chomp.downcase == "yes"
           start
         else
           goodbye
         end
+    end
+
+    def valid?(input,array)
+      if input == "end"
+        goodbye
+      end
+      # input_to_i.between?(1,array.length)
+       input.to_i.between?(1, array.length)
+    end
+
+    def repeat_cuisine
+      puts "I don't understand. Please pick another cuisine"
+          sleep(5)
+          start
+    end
+
+    def repeat_restaurant(input)
+      print_restaurants(input.to_i)
+          puts "To find out more, enter the number for which restaurant you want"
     end
 
     def print_cuisines
