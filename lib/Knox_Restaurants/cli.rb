@@ -2,9 +2,13 @@ class KnoxRestaurants::CLI
     #outputs to user
 
     def call
-      puts "Welcome to Knoxville!"
       KnoxRestaurants::API.fetch #fetches from API
-        start
+      puts <<-REST
+      -~~~~~~~~~~~~~~~~~~~~~~~~~-
+      |  Welcome to Knoxville!  |
+      -~~~~~~~~~~~~~~~~~~~~~~~~~-
+      REST
+      start
     end
 
     def start 
@@ -16,18 +20,37 @@ class KnoxRestaurants::CLI
 
     def display_cuisine_choices
       @cuisine = KnoxRestaurants::Restaurant.get_cuisines.each.with_index(1) do |cuisine, idx|
-        puts "#{idx}. #{cuisine}"
+        puts <<-REST
+        #{idx}. #{cuisine}
+        REST
       end
     end
 
     def input_cuisine_choice
-      puts "What are you in the mood for?"
-      puts "Enter a valid number"
-      puts "Enter 'end' to exit"
+      puts <<-REST
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      |  What are you in the mood for?  |
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      REST
+      puts <<-REST
+      -~~~~~~~~~~~~~~~~~~~~~~~~-
+      |  Enter a valid number  |
+      -~~~~~~~~~~~~~~~~~~~~~~~~-
+      REST
+      puts <<-REST
+      -~~~~~~~~~~~~~~~~~~~~~~~-
+      |  Enter 'end' to exit  |
+      -~~~~~~~~~~~~~~~~~~~~~~~-
+      REST
       input = gets.strip.downcase
         if  valid?(input, @cuisine)
           display_restaurants(input.to_i)
-          puts "To find out more, enter the number for which restaurant you want"
+          puts <<-REST
+          -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+          |      To find out more, enter the       |
+          |   number for the restaurant you want   |
+          -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+          REST
         else
           puts "I don't understand. Please pick another cuisine"
           sleep(2)
@@ -37,7 +60,9 @@ class KnoxRestaurants::CLI
 
     def display_restaurants(input)
       @restaurant = KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
-        puts "#{idx}. #{r.name}"
+        puts <<-REST
+            #{idx}. #{r.name}
+        REST
        end
     end
 
@@ -54,7 +79,7 @@ class KnoxRestaurants::CLI
     def display_details(input)
       r = @restaurant[input-1]
       
-      puts <<~RESTAURANT
+      puts <<-RESTAURANT
         Address: #{r.address}
         Phone number: #{r.phone_number}
         Website: #{r.url}

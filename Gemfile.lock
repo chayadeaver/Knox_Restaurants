@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    Knox_Restaurants (0.1.0)
+    Knox_Restaurants (0.4.0)
       httparty
       nokogiri
 
