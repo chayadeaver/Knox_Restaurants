@@ -2,8 +2,8 @@ class KnoxRestaurants::CLI
     #outputs to user
 
     def call
+      puts "Welcome to Knoxville!"
       KnoxRestaurants::API.fetch #fetches from API
-        puts "Welcome to Knoxville!"
         start
     end
 
