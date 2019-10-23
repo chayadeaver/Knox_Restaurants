@@ -7,10 +7,6 @@ class KnoxRestaurants::CLI
         start
     end
 
-    def hello
-      puts "hello"
-    end
-
     def start 
         display_cuisine_choices
         input_cuisine_choice
@@ -18,14 +14,10 @@ class KnoxRestaurants::CLI
         last_hurrah
     end
 
-    def return_details
-      puts "Please enter a valid restaurant number"
-      restaurant = gets.chomp
-        if valid?(restaurant, @restaurant)
-          display_details(restaurant.to_i)
-        else
-          return_details
-        end
+    def display_cuisine_choices
+      @cuisine = KnoxRestaurants::Restaurant.get_cuisines.each.with_index(1) do |cuisine, idx|
+        puts "#{idx}. #{cuisine}"
+      end
     end
 
     def input_cuisine_choice
@@ -43,24 +35,20 @@ class KnoxRestaurants::CLI
         end
     end
 
-    def valid?(input,array)
-      if input == "end"
-        goodbye
-      end
-      # input_to_i.between?(1,array.length)
-       input.to_i.between?(1, array.length)
-    end
-
-    def display_cuisine_choices
-      @cuisine = KnoxRestaurants::Restaurant.get_cuisines.each.with_index(1) do |cuisine, idx|
-        puts "#{idx}. #{cuisine}"
-      end
-    end
-
     def display_restaurants(input)
       @restaurant = KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
         puts "#{idx}. #{r.name}"
        end
+    end
+
+    def return_details
+      puts "Please enter a valid restaurant number"
+      restaurant = gets.chomp
+        if valid?(restaurant, @restaurant)
+          display_details(restaurant.to_i)
+        else
+          return_details
+        end
     end
 
     def display_details(input)
@@ -75,6 +63,13 @@ class KnoxRestaurants::CLI
         Reviews: #{r.reviews}
         RESTAURANT
       
+    end
+
+    def valid?(input,array)
+      if input == "end"
+        goodbye
+      end
+       input.to_i.between?(1, array.length)
     end
 
     def last_hurrah

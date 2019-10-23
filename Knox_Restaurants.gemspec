@@ -8,16 +8,16 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Chaya Deaver"]
   spec.email         = ["chayadeaver@gmail.com"]
 # for spec.summary and description you would have to fill it in later
-  spec.summary       = %q{Sear}
-  spec.description   = %q{asdasdas}
-  spec.homepage      = "http://knoxrestaurants.com"
+  spec.summary       = %q{"Search through Yelp API to gather information about restaurants"}
+  spec.description   = %q{"Gather user input and use that to correspond to Restaurant objects"}
+  spec.homepage      = "https://rubygems.org/gems/Knox_Restaurants"
   spec.license       = "MIT"
 
-  spec.metadata["allowed_push_host"] = "http://knoxrestaurants.com"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] ="http://knoxrestaurants.com"
-  spec.metadata["changelog_uri"] = "http://knoxrestaurants.com"
+  spec.metadata["source_code_uri"] ="https://github.com/chayadeaver/Knox_Restaurants"
+  # spec.metadata["changelog_uri"] = "http://knoxrestaurants.com"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
