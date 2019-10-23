@@ -7,6 +7,10 @@ class KnoxRestaurants::CLI
         start
     end
 
+    def hello
+      puts "hello"
+    end
+
     def start 
         display_cuisine_choices
         input_cuisine_choice
