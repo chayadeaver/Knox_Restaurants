@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-To start the program, run 'bin/knox_restaurants' in terminal. There will be a numbered list of cuisines to choose from. There will be a prompt to enter in a number. It will return a list of restaurants corresponding to the user's input. From here, enter a valid number to get more information for that restaurant. Enter "end" to exit the program.
+To start the program, run 'bin/Knox_Restaurants' in terminal. There will be a numbered list of cuisines to choose from. There will be a prompt to enter in a number. It will return a list of restaurants corresponding to the user's input. From here, enter a valid number to get more information for that restaurant. Enter "end" to exit the program.
 
 ## Development
 

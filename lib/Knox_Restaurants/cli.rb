@@ -4,9 +4,9 @@ class KnoxRestaurants::CLI
     def call
       KnoxRestaurants::API.fetch #fetches from API
       puts <<-REST
-      -~~~~~~~~~~~~~~~~~~~~~~~~~-
-      |  Welcome to Knoxville!  |
-      -~~~~~~~~~~~~~~~~~~~~~~~~~-
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      |     Welcome to Knoxville!     |
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
       REST
       start
     end
@@ -21,38 +21,42 @@ class KnoxRestaurants::CLI
     def display_cuisine_choices
       @cuisine = KnoxRestaurants::Restaurant.get_cuisines.each.with_index(1) do |cuisine, idx|
         puts <<-REST
-        #{idx}. #{cuisine}
+        #{idx}. #{cuisine}  
         REST
       end
     end
 
     def input_cuisine_choice
       puts <<-REST
-      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
-      |  What are you in the mood for?  |
-      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      |     What are you in the mood for?     |
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
       REST
       puts <<-REST
-      -~~~~~~~~~~~~~~~~~~~~~~~~-
-      |  Enter a valid number  |
-      -~~~~~~~~~~~~~~~~~~~~~~~~-
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      |     Enter a valid number     |
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
       REST
       puts <<-REST
-      -~~~~~~~~~~~~~~~~~~~~~~~-
-      |  Enter 'end' to exit  |
-      -~~~~~~~~~~~~~~~~~~~~~~~-
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      |     Enter 'end' to exit     |
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
       REST
       input = gets.strip.downcase
         if  valid?(input, @cuisine)
           display_restaurants(input.to_i)
           puts <<-REST
-          -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
-          |      To find out more, enter the       |
-          |   number for the restaurant you want   |
-          -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+          -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+          |         To find out more, enter the        |
+          |     number for the restaurant you want     |
+          -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
           REST
         else
-          puts "I don't understand. Please pick another cuisine"
+          puts <<-REST
+          -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+          |     I don't understand. Please pick another cuisine     |
+          -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+          REST
           sleep(2)
           start
         end
@@ -61,13 +65,17 @@ class KnoxRestaurants::CLI
     def display_restaurants(input)
       @restaurant = KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
         puts <<-REST
-            #{idx}. #{r.name}
+        #{idx}. #{r.name}  
         REST
        end
     end
 
     def return_details
-      puts "Please enter a valid restaurant number"
+      puts <<-REST
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      |     Please enter a valid restaurant number     |
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      REST
       restaurant = gets.chomp
         if valid?(restaurant, @restaurant)
           display_details(restaurant.to_i)
@@ -79,15 +87,14 @@ class KnoxRestaurants::CLI
     def display_details(input)
       r = @restaurant[input-1]
       
-      puts <<-RESTAURANT
-        Address: #{r.address}
-        Phone number: #{r.phone_number}
-        Website: #{r.url}
-        Rating: #{r.rating} of 5
-        Price Range: #{r.price}
-        Reviews: #{r.reviews}
-        RESTAURANT
-      
+      puts <<-REST
+      Address: #{r.address}
+      Phone number: #{r.phone_number}
+      Rating: #{r.rating} of 5
+      Price Range: #{r.price}
+      Reviews: #{r.reviews}
+      Website: #{r.url}
+      REST
     end
 
     def valid?(input,array)
@@ -98,7 +105,11 @@ class KnoxRestaurants::CLI
     end
 
     def last_hurrah
-      puts "Would you like to pick another cuisine? Yes or No"
+      puts <<-REST
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      |     Would you like to pick another cuisine? Yes or No     |
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      REST
         if gets.chomp.downcase == "yes"
           start
         else
@@ -107,7 +118,11 @@ class KnoxRestaurants::CLI
     end
 
     def goodbye
-      puts "Thanks for visiting Knoxville. Have a nice day."
+      puts <<-REST
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      |     Thanks for visiting Knoxville. Have a nice day!     |
+      -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
+      REST
       exit
     end
 end
