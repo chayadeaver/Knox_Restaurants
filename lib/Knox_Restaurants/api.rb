@@ -3,7 +3,8 @@ class KnoxRestaurants::API
     attr_accessor :cuisine
 
     def self.fetch
-        key = ENV["KEY"]
+        # key = ENV["KEY"]
+        key = ENV["API_KEY"]
         url = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=knoxville&limit=50"
         response = HTTParty.get(url, headers: {'Authorization' => "Bearer #{key}"})
         response.parsed_response
