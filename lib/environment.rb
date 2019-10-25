@@ -4,8 +4,6 @@ require_relative "./knox_restaurants/cli"
 require_relative "./knox_restaurants/restaurant"
 require_relative "./knox_restaurants/api"
 require "pry"
-require "nokogiri"
-require "open-uri"
 require "httparty"
 require "dotenv/load"
 
