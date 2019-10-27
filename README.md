@@ -20,6 +20,10 @@ Or install it yourself as:
 
 ## Usage
 
+Before starting the program, you would need to acquire Yelp's API key. Go to https://www.yelp.com/developers/v3/manage_app to create an account or use your existing Yelp login information to create an app. The information about the app isn't important because we just need an API key to access the API for this gem. 
+
+Once you created an app, you should see your API key. Go back to your terminal and inside the Knox_Restaurants directory, type 'touch .env'. This creates an environment file that will story your personal API key. Go to the '.env' file and type in 'export API_KEY=<your API Key>. Once that's done, you should be able to start your program.
+
 To start the program, run 'bin/Knox_Restaurants' in terminal. There will be a numbered list of cuisines to choose from. There will be a prompt to enter in a number. It will return a list of restaurants corresponding to the user's input. From here, enter a valid number to get more information for that restaurant. Enter "end" to exit the program.
 
 ## Development
