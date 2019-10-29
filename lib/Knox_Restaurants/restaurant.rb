@@ -23,14 +23,5 @@ class KnoxRestaurants::Restaurant
         @@all
     end
 
-    def self.get_cuisines 
-        #displays a list of cuisines with no duplicates
-        self.all.collect{|r| r.cuisine}.flatten.uniq
-    end
-
-    def self.get_cuisine_restaurants(num)
-        #compares the user input as an integer to find the cuisine that matches the Restaurant instance
-      cuisine = self.get_cuisines[num-1]
-      rest = self.all.select {|r| r.cuisine.include?(cuisine)}
-    end
+ 
 end

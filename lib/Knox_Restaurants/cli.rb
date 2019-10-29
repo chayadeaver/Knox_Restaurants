@@ -1,8 +1,9 @@
 class KnoxRestaurants::CLI
+  attr_reader :api
     #outputs to user
 
     def call
-      KnoxRestaurants::API.fetch #fetches from API
+      @api = KnoxRestaurants::API.new
       puts <<-REST
       -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
       |     Welcome to Knoxville!     |
@@ -19,7 +20,7 @@ class KnoxRestaurants::CLI
     end
 
     def display_cuisine_choices
-      @cuisine = KnoxRestaurants::Restaurant.get_cuisines.each.with_index(1) do |cuisine, idx|
+      @cuisine = api.get_cuisines.each.with_index(1) do |cuisine, idx|
         puts <<-REST
         #{idx}. #{cuisine}  
         REST
@@ -63,7 +64,7 @@ class KnoxRestaurants::CLI
     end
 
     def display_restaurants(input)
-      @restaurant = KnoxRestaurants::Restaurant.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
+      @restaurant = api.get_cuisine_restaurants(input).each.with_index(1) do |r, idx|
         puts <<-REST
         #{idx}. #{r.name}  
         REST
