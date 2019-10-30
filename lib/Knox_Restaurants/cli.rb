@@ -77,9 +77,9 @@ class KnoxRestaurants::CLI
       |     Please enter a valid restaurant number     |
       -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
       REST
-      restaurant = gets.chomp
-        if valid?(restaurant, @restaurant)
-          display_details(restaurant.to_i)
+      r = gets.chomp
+        if valid?(r, @restaurant)
+          display_details(r.to_i)
         else
           return_details
         end
@@ -98,7 +98,7 @@ class KnoxRestaurants::CLI
       REST
     end
 
-    def valid?(input,array)
+    def valid?(input, array)
       if input == "end"
         goodbye
       end

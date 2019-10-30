@@ -14,17 +14,17 @@ class KnoxRestaurants::API
             restaurant_hash = {
                 :name => a["name"],
                 :phone_number => a["display_phone"],
-                :cuisine => a["location"]["display_address"].join(", "),
-                :address => a["categories"].map{|type| type["title"]},
+                :cuisine => a["categories"].map{|type| type["title"]},
+                :address => a["location"]["display_address"].join(", "),
                 :url => a["url"],
                 :rating => a["rating"],
                 :price => a["price"],
                 :reviews => a["review_count"]
             }
-         
             KnoxRestaurants::Restaurant.new(restaurant_hash)  
         end
     end
+    
 
     def self.all
         @@all
@@ -37,8 +37,8 @@ class KnoxRestaurants::API
 
     def get_cuisine_restaurants(num)
         #compares the user input as an integer to find the cuisine that matches the Restaurant instance
-      cuisine = self.get_cuisines[num-1]
-      restaurants.select {|r| r.cuisine.include?(cuisine)}
+      cuisine_input = self.get_cuisines[num-1]
+      restaurants.select {|r| r.cuisine.include?(cuisine_input)}
     end
     
 end
