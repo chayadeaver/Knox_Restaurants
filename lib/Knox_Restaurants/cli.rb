@@ -8,7 +8,6 @@ class KnoxRestaurants::CLI
       -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
       |     Welcome to Knoxville!     |
       -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-
-      hello
       REST
       start
     end
